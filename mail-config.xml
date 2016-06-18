@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="gb2312"?>
+<Mail>
+	<!--邮件服务器IP或名称-->
+	<MailHost>smtp.qq.com</MailHost>
+	<!--登陆邮件服务器的名称-->
+	<Username>893569289</Username>	
+	<!--登陆邮件服务器的密码-->
+	<Password>xxxxxxxx</Password>
+	<!-- 发送的邮件请先设置：http://service.mail.qq.com/cgi-bin/help?subtype=1&&id=14&&no=1000898  说明文档 -->
+	
+	<!--邮件发送间隔时间，不可以太短，如果发送速度过快，很容易被对方的邮件服务器认为是垃圾邮件并退回，建议最少10秒，此处以秒为单位-->
+	<SendInterval>10</SendInterval>
+	<!--发送邮件的电邮地址-->
+	<MailFrom>893569289@qq.com</MailFrom>
+	<!--发送邮件的使用的编码-->
+	<MailCharset>utf-8</MailCharset>
+	<!--包含电子邮件的文本文件，每行一个电子邮件-->
+	<MailAddressFile>email.txt</MailAddressFile>
+	<!--包含已经发送了的电子邮件的地址,可以不配置-->
+	<MailSendedFile>sendedEmail.txt</MailSendedFile>
+	<!--邮件标题-->
+	<MailTitle>速网影院</MailTitle>
+	<!--邮件发送的内容，可以是本地的网页，也可是网络上的网页.如果是文本文件，直接将后缀名txt改为htm即可-->
+	<MailHtmlPath>MerryChirstmas.htm</MailHtmlPath>
+	<!--附件所在本地目录，将需要发送的所有附件都放于该目录中，其中可以有子目录-->
+	<MailAttachmentPath></MailAttachmentPath>
+	<!--保存发送成功邮件的文件，可以配置为绝对路径，也可以配置为相对路径，不配置不保存-->
+	<SaveMailSendedSuccFile>email_succ.txt</SaveMailSendedSuccFile>
+	<!--包含已经发送了的电子邮件的地址.可以配置为绝对路径，也可以配置为相对路径，不配置不保存-->
+	<SaveMailSendedFailFile>email_fail.txt</SaveMailSendedFailFile>
+	<!--不发送的Email类型，如QQ邮箱就发不出去，在这里设置，不设置就全部发送，以竖线"|"进行分隔，如"qq.com|foxmail.com|sohu.com"-->
+	<DonNotSendEmailType>foxmail.com|sohu.com</DonNotSendEmailType>
+	<!-- 配置Handler.邮件发送之前，对邮件的内容根据每个email关键字，进行特定的替换. 
+		 如在发送之前需要根据电子邮件获取当前接收方的名称，可以在这里估处理.不配置不处理，
+		 配置的Handler必须实现接口：
+		 可以参见我的实例实现类:
+	-->
+	<Handler>com.hzsuwang.email.EmailHandler</Handler>
+</Mail>

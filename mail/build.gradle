@@ -1,0 +1,11 @@
+apply plugin: 'java'
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile files('libs/commons-email-1.1.jar')
+    compile files('libs/htmllexer-2.1.jar')
+    compile files('libs/htmlparser-2.1.jar')
+    compile files('libs/jdom-1.0b8.jar')
+    compile files('libs/log4j-1.2.14.jar')
+    compile files('libs/mail-1.4.5.jar')
+}
