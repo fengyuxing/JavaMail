@@ -9,3 +9,7 @@ dependencies {
     compile files('libs/log4j-1.2.14.jar')
     compile files('libs/mail-1.4.5.jar')
 }
+
+tasks.withType(JavaCompile){
+    options.encoding="UTF-8"
+}

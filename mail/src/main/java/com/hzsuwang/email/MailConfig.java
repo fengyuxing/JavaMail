@@ -10,7 +10,7 @@ package com.hzsuwang.email;
  * @author tony.yan
  * 
  */
-public class MailInfo {
+public class MailConfig {
 	// 邮件登录账号
 	private String username = "";
 	// 邮件登录密码
@@ -46,11 +46,11 @@ public class MailInfo {
 	 */
 	private String handler = null;
 
-	public MailInfo() {
+	public MailConfig() {
 
 	}
 
-	public MailInfo(String username, String password, String hostName, String from, String title) {
+	public MailConfig(String username, String password, String hostName, String from, String title) {
 		super();
 		this.username = username;
 		this.password = password;
