@@ -1,4 +1,11 @@
-package com.hzsuwang.email;
+package com.zzx.email.dao;
+
+import com.hzsuwang.email.JDomUtil;
+import com.hzsuwang.email.MailConfig;
+
+import org.jdom.Document;
+import org.jdom.Element;
+import org.jdom.JDOMException;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -9,22 +16,11 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jdom.Document;
-import org.jdom.Element;
-import org.jdom.JDOMException;
-
 /**
- * @Site：http://www.hzsuwang.com
- * @Email：hzsuwang@163.com
- * @@blog:http://www.hzqvod.com
- * @author tony.yan
- * 
+ *
  */
-public class MailUtil {
+public class ConfigUtil {
 
-	public static void main(String[] args) throws Exception {
-
-	}
 
 	// 发送成功邮件的保存输入器
 	static PrintWriter succEmailWriter;

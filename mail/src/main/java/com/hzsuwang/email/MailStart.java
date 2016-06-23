@@ -29,12 +29,12 @@ import java.util.List;
 public class MailStart implements Runnable {
 	protected Logger logger = Logger.getLogger(MailStart.class);
 
-	private MailInfo mailInfo = null;
+	private MailConfig mailConfig = null;
 	private final String tipInfoFormat = "一共需要发送{0}封邮件,成功发送{1}封,失败发送{2}封。\n\r失败邮件列表地址：{3}";
 
 	public MailStart() {
 		try {
-			mailInfo = MailUtil.getMailInfo();
+			mailConfig = MailUtil.getMailInfo();
 		} catch (JDOMException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -48,9 +48,9 @@ public class MailStart implements Runnable {
 	}
 
 	public void run() {
-		List<String> list = MailUtil.getMailToList(mailInfo.getAddressPath());
+		List<String> list = MailUtil.getMailToList(mailConfig.getAddressPath());
 		try {
-			this.sendHtmlEmail(mailInfo, list);
+			this.sendHtmlEmail(mailConfig, list);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -70,7 +70,7 @@ public class MailStart implements Runnable {
 	 *            已经加载到内存的电邮List
 	 * @throws Exception
 	 */
-	private void sendHtmlEmail(MailInfo info, List<String> emailAddresslist) throws Exception {
+	private void sendHtmlEmail(MailConfig info, List<String> emailAddresslist) throws Exception {
 		List<String> fialAddressList = new ArrayList<String>();
 		// 读取已经发送的邮件
 		ArrayList<String> sendedEmail = MailUtil.getSendedEmail(info.getSendedAddressPath());
@@ -179,7 +179,7 @@ public class MailStart implements Runnable {
 	 * @return
 	 * @throws Exception
 	 */
-	private boolean sendSingleHtmlEmail(MailInfo info, String to, String context) throws Exception {
+	private boolean sendSingleHtmlEmail(MailConfig info, String to, String context) throws Exception {
 		String username = info.getUsername();
 		String password = info.getPassword();
 		String host = info.getHostName();
@@ -226,7 +226,7 @@ public class MailStart implements Runnable {
 	 * @throws IOException
 	 * @throws ParserException
 	 */
-	private static String linkPicture2HTML(MailInfo info, HtmlEmail email, String context) throws EmailException, IOException, ParserException {
+	private static String linkPicture2HTML(MailConfig info, HtmlEmail email, String context) throws EmailException, IOException, ParserException {
 		String htmlPath = info.getHtmlPath();// 发送的HTML的地址
 		String htmlFile = "";// 网络HTML的地址
 		boolean localFile = true;// 是否本地文件
@@ -327,7 +327,7 @@ public class MailStart implements Runnable {
 	 * @param email
 	 * @throws EmailException
 	 */
-	private static void addAttachment(MailInfo info, HtmlEmail email) throws EmailException {
+	private static void addAttachment(MailConfig info, HtmlEmail email) throws EmailException {
 		String attachmentPath = info.getAttachmentPath();
 		if (attachmentPath != null && !attachmentPath.equals("")) {
 			File path = new File(attachmentPath);

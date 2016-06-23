@@ -31,7 +31,7 @@ public class EmailHandler implements Handler {
 
 	public String dealContent(String email, String htmlContent) throws Exception {
 		String name = emailName.get(email);
-		htmlContent = htmlContent.replace("{1}", name);
+		//htmlContent = htmlContent.replace("{1}", name);
 		return htmlContent;
 	}
 
