@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Author: zhangshupeng
- * Email: zhangshupeng@xywy.com
+ * Author: zzx
+ *
  * Date: 2016/6/22 14:59
  */
 public class FileUtil {
@@ -17,7 +17,7 @@ public class FileUtil {
      * @param file
      * @return
      */
-    public static List<String> readFile(String file){
+    public static List<String> readStringList(String file){
         FileReader read = null;
         BufferedReader br = null;
         List<String> lines = new ArrayList<String>();
@@ -44,5 +44,14 @@ public class FileUtil {
             }
         }
         return lines;
+    }
+
+    public static String readString(String file){
+        List<String> list=readStringList(file);
+        StringBuffer buffer=new StringBuffer();
+        for (String s:list){
+            buffer.append(s);
+        }
+        return buffer.toString();
     }
 }

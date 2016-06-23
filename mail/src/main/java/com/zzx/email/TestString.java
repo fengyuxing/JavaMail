@@ -1,8 +1,8 @@
 package com.zzx.email;
 
 /**
- * Author: zhangshupeng
- * Email: zhangshupeng@xywy.com
+ * Author: zzx
+ *
  * Date: 2016/6/22 17:10
  */
 public class TestString implements Runnable {

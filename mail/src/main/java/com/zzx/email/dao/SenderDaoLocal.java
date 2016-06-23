@@ -1,51 +1,40 @@
 package com.zzx.email.dao;
 
 import com.zzx.email.bean.Sender;
+import com.zzx.email.util.FileUtil;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Author: zhangshupeng
- * Email: zhangshupeng@xywy.com
+ * Author: zzx
+ *
  * Date: 2016/6/22 14:46
  */
 public class SenderDaoLocal implements ISenderDao {
-    private List<String> senders = new ArrayList<String>();
-
+    private List<Sender> senders = new LinkedList<>();
+    private List<Sender> inUsed = new LinkedList<>();
     public SenderDaoLocal(String pathOrFilename) {
-        FileReader read = null;
-        BufferedReader br = null;
-        try {
-
-            if (pathOrFilename.indexOf(":") < 0) {// 根据传入的路径中是否带":"确认传入的是相对路径还是绝对路径，相对路径则做路径补充，绝对路径直接使用
-                pathOrFilename = new File("").getAbsolutePath() + File.separator + pathOrFilename;
-            }
-            read = new FileReader(pathOrFilename);
-            br = new BufferedReader(read);
-            String info = null;
-            while ((info = br.readLine()) != null) {
-                if (!info.trim().equals("")) {
-                    senders.add(info);
-                }
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        } finally {
-            try {
-                br.close();
-                read.close();
-            } catch (Exception ex) {
-                ex.printStackTrace();
+        List<String> list=FileUtil.readStringList(pathOrFilename);
+        for (String sender:list){
+            Sender s=new Sender();
+            String[] args=sender.trim().split(",");
+            if (args.length==3){
+                s.setEmailAddress(args[0]);
+                s.setPassword(args[1]);
+                s.setServerHost(args[2]);
+                senders.add(s);
             }
         }
     }
 
     @Override
     public Sender getNextSender() {
-        return null;
+        if (senders.size()==0)
+            throw  new RuntimeException("No more senders");
+        Sender sender=senders.get(0);
+        senders.remove(0);
+        inUsed.add(sender);
+        return sender;
     }
 }

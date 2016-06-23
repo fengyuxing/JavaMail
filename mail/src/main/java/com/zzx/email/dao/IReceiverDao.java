@@ -1,12 +1,12 @@
 package com.zzx.email.dao;
 
-import com.zzx.email.bean.Sender;
+import com.zzx.email.bean.Receiver;
 
 /**
- * Author: zhangshupeng
- * Email: zhangshupeng@xywy.com
+ * Author: zzx
+ *
  * Date: 2016/6/22 14:44
  */
 public interface IReceiverDao {
-    public Sender getNextReceiver();
+    public Receiver getNextReceiver();
 }
